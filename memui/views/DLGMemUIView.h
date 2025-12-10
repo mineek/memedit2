@@ -1,0 +1,36 @@
+//
+//  DLGMemUIView.h
+//  memui
+//
+//  Created by Liu Junqi on 11/11/2016.
+//  Copyright © 2016 Liu Junqi. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "DLGMemUIViewDelegate.h"
+#include "search_result_def.h"
+
+#define DLG_DEBUG_CONSOLE_VIEW_SIZE 64
+
+// #define DLG_DEBUG_CONSOLE_VIEW_MIN_ALPHA 0.5f
+#define DLG_DEBUG_CONSOLE_VIEW_MIN_ALPHA 1.0f
+// #define DLG_DEBUG_CONSOLE_VIEW_MAX_ALPHA 0.8f
+#define DLG_DEBUG_CONSOLE_VIEW_MAX_ALPHA 1.0f
+
+@interface DLGMemUIView : UIView
+
+@property (nonatomic) id<DLGMemUIViewDelegate> delegate;
+@property (nonatomic) UIWindow *window;
+@property (nonatomic, readonly) BOOL shouldNotBeDragged;
+@property (nonatomic) BOOL expanded;
+
+@property (nonatomic) NSInteger chainCount;
+@property (nonatomic) search_result_chain_t chain;
+
++ (instancetype)instance;
+- (void)doExpand;
+- (void)doCollapse;
+- (void)updateSearchProgress:(float)progress;
+- (void)hideSearchProgress;
+
+@end

@@ -1,0 +1,7 @@
+.theos/
+packages/
+.DS_Store
+memedit.dylib
+log.txt
+obj/
+tools/insert_dylib
