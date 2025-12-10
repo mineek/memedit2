@@ -1,7 +1,7 @@
 CC = xcrun -sdk iphoneos clang
 TARGET_SYSROOT := $(shell xcrun -sdk iphoneos --show-sdk-path)
-CFLAGS = -isysroot $(TARGET_SYSROOT) -arch arm64 -Wno-error -Oz -flto=full -miphoneos-version-min=14.0 -std=gnu17 -fvisibility=hidden
-LDFLAGS = -isysroot $(TARGET_SYSROOT) -arch arm64 -Wl,-dead_strip
+CFLAGS = -isysroot $(TARGET_SYSROOT) -arch arm64 -arch armv7 -Wno-error -Oz -flto=full -miphoneos-version-min=9.0 -std=gnu17 -fvisibility=hidden
+LDFLAGS = -isysroot $(TARGET_SYSROOT) -arch arm64 -arch armv7 -Wl,-dead_strip
 
 ifdef RELEASE_BUILD
 	CFLAGS += -DRELEASE_BUILD
