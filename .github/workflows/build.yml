@@ -1,0 +1,31 @@
+name: build and upload memedit
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-15
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Switch Xcode version
+        run: |
+          sudo xcode-select -s /Applications/Xcode_16.2.0.app/Contents/Developer
+
+      - name: Build and Package
+        run: |
+          cd $GITHUB_WORKSPACE
+          RELEASE_BUILD=1 make
+          mkdir -p ./output
+          mv ./*.dylib ./output/memedit-$(date +%Y-%m-%d-%Hh%Mm%Ss)-$(git rev-parse --short HEAD).dylib
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: memedit
+          path: ./output/*.dylib
